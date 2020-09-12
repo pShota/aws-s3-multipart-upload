@@ -4,7 +4,7 @@ This is a forked repo from [here](https://github.com/apoorvam/aws-s3-multipart-u
 
 This repo added "Worker pool" by using **Goroutine** so that multiparts are uploaded in parallel
 
-Also added a few flags to control `S3 Storage Class` and `directory path`
+Also added a few flags to control `S3 Storage Class` and `Directory path`
 
 ### Variables setup before run:
 

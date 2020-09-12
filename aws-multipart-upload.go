@@ -114,7 +114,9 @@ func main() {
 	var completedParts []*s3.CompletedPart
 	partNumber := 1
 
+	//receive completed parts from upload result
 	partsChannel := make(chan *s3.CompletedPart, int(totalparts))
+	//send out UploadTask to worker
 	tasksChannel := make(chan *UploadTask, int(totalparts))
 
 	for myworker := 1; myworker <= maxConnection; myworker++ {
@@ -156,7 +158,7 @@ func main() {
 		}
 	}
 	fmt.Println("sorting result parts...")
-	//sort completedParts as we randomly added in goroutine
+	//sort completedParts by partnumber as we randomly added in goroutine, otherwise s3 would complain
 	sort.Slice(completedParts, func(i, j int) bool {
 		return *(completedParts[i].PartNumber) < *(completedParts[j].PartNumber)
 	})
